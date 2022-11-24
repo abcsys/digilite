@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: matter-light
+spec:
+  containers:
+  - name: matter-light
+    image: 192.168.49.1:5000/matter-light
