@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: light
+spec:
+  template:
+    metadata:
+      name: light-pod
+    spec:
+      containers:
+      - name: light
+        image: 192.168.49.1:5000/light
+      restartPolicy: Never
