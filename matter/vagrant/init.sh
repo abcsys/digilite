@@ -5,7 +5,7 @@ install_deps() {
   sudo apt-get install -y -qq git gcc g++ pkg-config libssl-dev libdbus-1-dev \
   libglib2.0-dev libavahi-client-dev ninja-build python3-venv python3-dev \
   python3-pip unzip libgirepository1.0-dev libcairo2-dev libreadline-dev \
-  ca-certificates curl gnupg lsb-release wget conntrack python-is-python3 > /dev/null
+  ca-certificates curl gnupg lsb-release wget conntrack python-is-python3 avahi-daemon > /dev/null
 }
 
 install_docker() {
@@ -52,8 +52,13 @@ install_minikube() {
 
 install_matter() {
   cd /home/vagrant
-  git clone --depth 1 --branch v1.0.0 https://github.com/project-chip/connectedhomeip.git matter
-  git config --global --add safe.directory /home/matter/connectedhomeip/third_party/pigweed/repo
+  mkdir /home/vagrant/matter
+  cd /home/vagrant/matter
+  git init
+  git remote add origin https://github.com/project-chip/connectedhomeip.git
+  git fetch --depth 1 origin 9a41c9c3d971797010ab9de4eb04804015674fb0
+  git checkout FETCH_HEAD
+  git config --global --add safe.directory /home/vagrant/matter/third_party/pigweed/repo
   cd /home/vagrant/matter
   scripts/checkout_submodules.py --shallow --platform linux
   source scripts/activate.sh
