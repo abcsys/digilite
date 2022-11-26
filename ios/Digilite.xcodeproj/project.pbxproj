@@ -13,6 +13,9 @@
 		51D5FD2C28FF1BA600D3BDF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51D5FD2A28FF1BA600D3BDF8 /* Main.storyboard */; };
 		51D5FD2E28FF1BA600D3BDF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51D5FD2D28FF1BA600D3BDF8 /* Assets.xcassets */; };
 		51D5FD3128FF1BA600D3BDF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51D5FD2F28FF1BA600D3BDF8 /* LaunchScreen.storyboard */; };
+		51F7D4802931F5200094BDA2 /* MQTTDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F7D47F2931F5200094BDA2 /* MQTTDelegate.swift */; };
+		51F7D482293210A90094BDA2 /* LocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F7D481293210A90094BDA2 /* LocationDelegate.swift */; };
+		51F7D485293212620094BDA2 /* NetworkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F7D484293212620094BDA2 /* NetworkDelegate.swift */; };
 		B2335268F5BC6697CCA831F7 /* Pods_Digilite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7455082769751A3C9207C38E /* Pods_Digilite.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +29,9 @@
 		51D5FD3028FF1BA600D3BDF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		51D5FD3228FF1BA600D3BDF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51D5FD3828FF2D4B00D3BDF8 /* Digilite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Digilite.entitlements; sourceTree = "<group>"; };
+		51F7D47F2931F5200094BDA2 /* MQTTDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTDelegate.swift; sourceTree = "<group>"; };
+		51F7D481293210A90094BDA2 /* LocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDelegate.swift; sourceTree = "<group>"; };
+		51F7D484293212620094BDA2 /* NetworkDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDelegate.swift; sourceTree = "<group>"; };
 		5E7DDF67524E14C06B317FE0 /* Pods-Digilite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digilite.debug.xcconfig"; path = "Target Support Files/Pods-Digilite/Pods-Digilite.debug.xcconfig"; sourceTree = "<group>"; };
 		70D25613FF9EF8233C9B010B /* Pods-Digilite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digilite.release.xcconfig"; path = "Target Support Files/Pods-Digilite/Pods-Digilite.release.xcconfig"; sourceTree = "<group>"; };
 		7455082769751A3C9207C38E /* Pods_Digilite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Digilite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,10 +78,12 @@
 		51D5FD2328FF1BA600D3BDF8 /* Digilite */ = {
 			isa = PBXGroup;
 			children = (
+				51F7D4832932120D0094BDA2 /* Sensor Delegates */,
 				51D5FD3828FF2D4B00D3BDF8 /* Digilite.entitlements */,
 				51D5FD2428FF1BA600D3BDF8 /* AppDelegate.swift */,
 				51D5FD2628FF1BA600D3BDF8 /* SceneDelegate.swift */,
 				51D5FD2828FF1BA600D3BDF8 /* ViewController.swift */,
+				51F7D47F2931F5200094BDA2 /* MQTTDelegate.swift */,
 				51D5FD2A28FF1BA600D3BDF8 /* Main.storyboard */,
 				51D5FD2D28FF1BA600D3BDF8 /* Assets.xcassets */,
 				51D5FD2F28FF1BA600D3BDF8 /* LaunchScreen.storyboard */,
@@ -84,13 +92,21 @@
 			path = Digilite;
 			sourceTree = "<group>";
 		};
+		51F7D4832932120D0094BDA2 /* Sensor Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				51F7D481293210A90094BDA2 /* LocationDelegate.swift */,
+				51F7D484293212620094BDA2 /* NetworkDelegate.swift */,
+			);
+			path = "Sensor Delegates";
+			sourceTree = "<group>";
+		};
 		764E3F9A68C5EA79ADE71CBC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				5E7DDF67524E14C06B317FE0 /* Pods-Digilite.debug.xcconfig */,
 				70D25613FF9EF8233C9B010B /* Pods-Digilite.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -210,7 +226,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				51D5FD2928FF1BA600D3BDF8 /* ViewController.swift in Sources */,
+				51F7D482293210A90094BDA2 /* LocationDelegate.swift in Sources */,
 				51D5FD2528FF1BA600D3BDF8 /* AppDelegate.swift in Sources */,
+				51F7D485293212620094BDA2 /* NetworkDelegate.swift in Sources */,
+				51F7D4802931F5200094BDA2 /* MQTTDelegate.swift in Sources */,
 				51D5FD2728FF1BA600D3BDF8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
