@@ -32,6 +32,10 @@ class ViewController: UIViewController {
         networkDelegate = NetworkDelegate(viewController: self, mqttDelegate: mqttDelegate!)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        mqttDelegate?.reconnect()
+    }
+    
     // MARK: - Helper Methods
     
     func updateNetworkLabels(ssid: String, bssid: String, signalStrength: String) {

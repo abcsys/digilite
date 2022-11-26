@@ -12,8 +12,8 @@ class MQTTDelegate: CocoaMQTT5Delegate {
     // MARK: - Constants
     
     private let EMQX_CLIENT_ID = "DIGI-NAME-STUB"
-    private let EMQX_HOST = "broker.emqx.io" // 100.99.70.104
-    private let EMQX_PORT: UInt16 = 1883
+    private let EMQX_HOST = "6.tcp.ngrok.io"
+    private let EMQX_PORT: UInt16 = 16744
     private let DIGI_CLIENT_NAME = "DIGI-NAME" // TODO: let user input digi name into app
     private let MQTT_USERNAME = "username"
     private let MQTT_PASSWORD = "password"
@@ -49,6 +49,16 @@ class MQTTDelegate: CocoaMQTT5Delegate {
     }
     
     // MARK: - Helper Methods
+    
+    func reconnect() {
+        if (connected) { return }
+        
+        print("Reconnecting...")
+        
+        if (!mqtt5.connect()) {
+            print("Failed to reinitialize MQTT connection")
+        }
+    }
     
     func publishMessage(json: String) {
         if (connected) {
@@ -105,6 +115,10 @@ class MQTTDelegate: CocoaMQTT5Delegate {
     }
     
     func mqtt5DidDisconnect(_ mqtt5: CocoaMQTT5, withError err: Error?) {
-        return
+        connected = false
+        print("MQTT disconnected")
+        
+        // Attempt reconnect
+        reconnect()
     }
 }
