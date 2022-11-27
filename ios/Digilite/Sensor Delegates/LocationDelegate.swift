@@ -51,10 +51,21 @@ class LocationDelegate: NSObject, CLLocationManagerDelegate {
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
             
-            mqttDelegate.publishMessage(json: "{location:{latitude:\(latitude),longitude:\(longitude)}}")
+            let data: [String: Any] = [
+                "location": [
+                    "latitude": latitude,
+                    "longitude": longitude
+                ]
+            ]
+            
+            mqttDelegate.publishMessage(data: data)
             viewController.updateLocationLabels(latitude: String(latitude), longitude: String(longitude))
         } else {
-            mqttDelegate.publishMessage(json: "{location:{}")
+            let data: [String: Any] = [
+                "location": []
+            ]
+            
+            mqttDelegate.publishMessage(data: data)
             viewController.updateLocationLabels(latitude: "ERROR", longitude: "ERROR")
         }
     }

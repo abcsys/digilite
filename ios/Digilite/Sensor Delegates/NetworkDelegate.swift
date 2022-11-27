@@ -31,22 +31,38 @@ class NetworkDelegate {
     
     func updateNotConnected() {
         // Not connected to wifi
-        mqttDelegate.publishMessage(json: "{network:{}}")
+        let data: [String: Any] = [
+            "network": []
+        ]
+        
+        mqttDelegate.publishMessage(data: data)
         viewController.updateNetworkLabels(ssid: "None", bssid: "None", signalStrength: "None")
     }
 
     func updateConnectedNetwork(network: NEHotspotNetwork?) {
         if let network = network {
+            // Using wifi
             let ssid = network.ssid
             let bssid = network.bssid
             let signalStrength = String(network.signalStrength)
             
-            // Using wifi
-            mqttDelegate.publishMessage(json: "{network:{ssid:\"\(ssid)\",bssid:\"\(bssid)\",strength:\(signalStrength)}}")
+            let data: [String: Any] = [
+                "network": [
+                    "ssid": ssid,
+                    "bssid": bssid,
+                    "signalStrength": signalStrength
+                ]
+            ]
+            
+            mqttDelegate.publishMessage(data: data)
             viewController.updateNetworkLabels(ssid: ssid, bssid: bssid, signalStrength: signalStrength)
         } else {
             // Error finding network information
-            mqttDelegate.publishMessage(json: "{network:{}}")
+            let data: [String: Any] = [
+                "network": []
+            ]
+            
+            mqttDelegate.publishMessage(data: data)
             viewController.updateNetworkLabels(ssid: "ERROR", bssid: "ERROR", signalStrength: "ERROR")
         }
     }

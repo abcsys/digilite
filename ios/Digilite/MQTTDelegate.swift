@@ -12,8 +12,8 @@ class MQTTDelegate: CocoaMQTT5Delegate {
     // MARK: - Constants
     
     private let EMQX_CLIENT_ID = "DIGI-NAME-STUB"
-    private let EMQX_HOST = "6.tcp.ngrok.io"
-    private let EMQX_PORT: UInt16 = 16744
+    private let EMQX_HOST = "0.tcp.ngrok.io"
+    private let EMQX_PORT: UInt16 = 12988
     private let DIGI_CLIENT_NAME = "DIGI-NAME" // TODO: let user input digi name into app
     private let MQTT_USERNAME = "username"
     private let MQTT_PASSWORD = "password"
@@ -60,10 +60,24 @@ class MQTTDelegate: CocoaMQTT5Delegate {
         }
     }
     
-    func publishMessage(json: String) {
+    func publishMessage(data: [String: Any]) {
         if (connected) {
+            let json = dictionaryToJSON(dictionary: data)
+            guard let json = json else {
+                print("Invalid JSON dictionary provided, skipping publish")
+                return
+            }
             let message = CocoaMQTT5Message.init(topic: DIGI_CLIENT_NAME, string: json)
             mqtt5.publish(message, properties: MqttPublishProperties.init())
+        }
+    }
+    
+    func dictionaryToJSON(dictionary: [String: Any]) -> String? {
+        do {
+            let data = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions()) as NSData
+            return NSString(data: data as Data, encoding: String.Encoding.utf8.rawValue)! as String
+        } catch _ {
+            return nil
         }
     }
     
