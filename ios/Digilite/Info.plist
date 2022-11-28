@@ -21,6 +21,10 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UIRequiresPersistentWiFi</key>
 	<true/>
 </dict>

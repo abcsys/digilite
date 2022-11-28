@@ -26,6 +26,8 @@ class LocationDelegate: NSObject, CLLocationManagerDelegate {
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.showsBackgroundLocationIndicator = true
         
         // Handle each case of location permissions
         switch locationManager.authorizationStatus {
