@@ -46,4 +46,4 @@ WORKDIR /src/
 
 COPY --from=builder /src/matter/examples/chef/linux/out/rootnode_onofflight_bbs1b7IaOV ./light
 
-CMD ["./light"]
+CMD /etc/init.d/dbus start && /etc/init.d/avahi-daemon start && ./light

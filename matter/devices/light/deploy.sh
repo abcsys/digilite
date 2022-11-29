@@ -1,7 +1,11 @@
 #!/bin/bash
 
-docker build -t 192.168.49.1:5000/matter-light .
-docker image tag 192.168.49.1:5000/matter-light localhost:5000/matter-light
+MINIKUBE_IP=$(minikube ssh grep host.minikube.internal /etc/hosts | cut -f1 -s -z)
+
+docker build -t ${MINIKUBE_IP}:5000/matter-light .
+docker image tag ${MINIKUBE_IP}:5000/matter-light localhost:5000/matter-light
 docker push localhost:5000/matter-light
+kubectl delete -f ../../util/external-mdns.yml
+kubectl apply -f ../../util/external-mdns.yml
 kubectl delete -f light.yml
 kubectl apply -f light.yml

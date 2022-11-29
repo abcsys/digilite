@@ -1,4 +1,4 @@
-FROM ubuntu:latest AS builder
+FROM buildpack-deps:bullseye AS builder
 WORKDIR /src/
 RUN apt-get update \
 && apt-get install -y -qq git gcc g++ pkg-config libssl-dev libdbus-1-dev \
@@ -50,9 +50,11 @@ RUN cd /src/matter && pip install *.whl
 
 WORKDIR /src/
 
+COPY --from=builder /src/matter/credentials/development/paa-root-certs ./paa-root-certs
+
 COPY *.txt *.yml *.yaml ./
 RUN pip install -r thirdparty.txt > /dev/null 2>&1 || true
 
 COPY *.py ./
-CMD python3 handler.py
+CMD /etc/init.d/dbus start && /etc/init.d/avahi-daemon start && python3 handler.py
 

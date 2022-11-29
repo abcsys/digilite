@@ -1,8 +1,42 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: matter-light
 spec:
-  containers:
-  - name: matter-light
-    image: 192.168.49.1:5000/matter-light
+  selector:
+    matchLabels:
+      run: matter-light
+  template:
+    metadata:
+      labels:
+        run: matter-light
+    spec:
+      hostNetwork: true
+      containers:
+      - name: matter-light
+        image: 192.168.49.1:5000/matter-light
+        ports:
+        - containerPort: 5540
+          protocol: UDP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: matter-light
+  labels:
+    name: matter-light
+    app: matter-device
+spec:
+  ports:
+  - port: 5540
+    targetPort: 5540
+    protocol: UDP
+    name: matter-port
+  - port: 5353
+    targetPort: 5353
+    protocol: UDP
+    name: mdns-port
+  selector:
+    name: matter-light
