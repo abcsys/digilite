@@ -1,0 +1,19 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd public && npm run build",
+    "start": "npm run build && node server"
+  },
+  "type": "module",
+  "author": "Wilson Nguyen",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "@fastify/static": "^6.5.1",
+    "fastify": "^4.10.2",
+    "yaml": "^2.1.3"
+  }
+}

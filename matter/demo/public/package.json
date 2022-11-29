@@ -1,0 +1,35 @@
+{
+  "private": true,
+  "name": "public",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "preact build",
+    "dev": "preact watch",
+    "lint": "eslint src"
+  },
+  "eslintConfig": {
+    "extends": "preact",
+    "ignorePatterns": [
+      "build/"
+    ],
+    "settings": {
+      "jest": {
+        "version": 27
+      }
+    }
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^6.4.0",
+    "eslint": "^6.0.1",
+    "eslint-config-preact": "^1.1.0",
+    "preact-cli": "^3.0.0",
+    "preact-router": "^4.1.0",
+    "sass": "^1.55.0",
+    "sass-loader": "^10.3.1"
+  },
+  "dependencies": {
+    "preact": "^10.3.2",
+    "preact-render-to-string": "^5.1.4"
+  }
+}
