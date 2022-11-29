@@ -116,8 +116,8 @@ install_digi() {
   echo 'export PATH=$PATH:/home/vagrant/go/bin' >> /home/vagrant/.bashrc
   export PATH=$PATH:/home/vagrant/go/bin
   source /home/vagrant/.bashrc
-  git checkout digi-0.2.4
-  make digi
+  git checkout digi-0.2.7
+  make
   make install
 }
 
