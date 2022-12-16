@@ -18,7 +18,7 @@ SHELL ["/bin/bash", "-c"]
 RUN scripts/checkout_submodules.py --shallow --platform linux
 RUN source scripts/activate.sh \
 && deactivate
-RUN source scripts/activate.sh \ 
+RUN source scripts/activate.sh \
 && scripts/build_python.sh -m platform -i separate
 
 FROM python:3.8
@@ -36,10 +36,6 @@ WORKDIR /src/
 # TBD multi-stage build with slim base image
 RUN git clone https://github.com/silveryfu/kopf.git && \
     cd kopf && git checkout digi && pip install -e .
-RUN git clone https://github.com/silveryfu/zed.git && \
-    mv zed/python/zed zed-cli && pip install -e ./zed-cli && rm -r zed/
-COPY driver/requirements.txt ./driver/requirements.txt
-RUN cd driver; pip install -r requirements.txt
 
 COPY driver ./driver
 RUN pip install -e ./driver
@@ -57,4 +53,3 @@ RUN pip install -r thirdparty.txt > /dev/null 2>&1 || true
 
 COPY *.py ./
 CMD /etc/init.d/dbus start && /etc/init.d/avahi-daemon start && python3 handler.py
-
