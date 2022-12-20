@@ -12,23 +12,26 @@ class MQTTDelegate: CocoaMQTT5Delegate {
     // MARK: - Constants
     
     private let EMQX_CLIENT_ID = "DIGI-NAME-STUB"
-    private let EMQX_HOST = "6.tcp.ngrok.io"
-    private let EMQX_PORT: UInt16 = 18077
-    private let DIGI_CLIENT_NAME = "DIGI-NAME" // TODO: let user input digi name into app
+    private let EMQX_HOST = "0.tcp.ngrok.io"
+    private let EMQX_PORT: UInt16 = 14971
     private let MQTT_USERNAME = "username"
     private let MQTT_PASSWORD = "password"
     private let MQTT_KEEPALIVE: UInt16 = 60
     
     // MARK: - State
     
+    private var viewController: ViewController
     private var mqtt5: CocoaMQTT5
     private var connected: Bool
+    private var digiphoneName: String
     
     // MARK: - Class Methods
     
-    init() {
-        mqtt5 = CocoaMQTT5(clientID: EMQX_CLIENT_ID, host: EMQX_HOST, port: EMQX_PORT)
-        connected = false
+    init(viewController: ViewController, digiphoneName: String) {
+        self.viewController = viewController
+        self.mqtt5 = CocoaMQTT5(clientID: EMQX_CLIENT_ID, host: EMQX_HOST, port: EMQX_PORT)
+        self.connected = false
+        self.digiphoneName = digiphoneName
         
         // MQTT 5.0 connection properties
         let connectProperties = MqttConnectProperties()
@@ -37,13 +40,15 @@ class MQTTDelegate: CocoaMQTT5Delegate {
         connectProperties.receiveMaximum = 100
         connectProperties.maximumPacketSize = 500
         
-        mqtt5.delegate = self
-        mqtt5.connectProperties = connectProperties
-        mqtt5.username = MQTT_USERNAME
-        mqtt5.password = MQTT_PASSWORD
-        mqtt5.keepAlive = MQTT_KEEPALIVE
+        self.mqtt5.delegate = self
+        self.mqtt5.connectProperties = connectProperties
+        self.mqtt5.username = MQTT_USERNAME
+        self.mqtt5.password = MQTT_PASSWORD
+        self.mqtt5.keepAlive = MQTT_KEEPALIVE
         
-        if (!mqtt5.connect()) {
+        viewController.updateMQTTStatus(status: "CONNECTING...")
+        
+        if (!self.mqtt5.connect()) {
             print("Failed to initialize MQTT connection")
         }
     }
@@ -53,9 +58,11 @@ class MQTTDelegate: CocoaMQTT5Delegate {
     func reconnect() {
         if (connected) { return }
         
+        viewController.updateMQTTStatus(status: "RECONNECTING...")
         print("Reconnecting...")
         
         if (!mqtt5.connect()) {
+            viewController.updateMQTTStatus(status: "DISCONNECTED")
             print("Failed to reinitialize MQTT connection")
         }
     }
@@ -67,7 +74,7 @@ class MQTTDelegate: CocoaMQTT5Delegate {
                 print("Invalid JSON dictionary provided, skipping publish")
                 return
             }
-            let message = CocoaMQTT5Message.init(topic: DIGI_CLIENT_NAME, string: json)
+            let message = CocoaMQTT5Message.init(topic: digiphoneName, string: json)
             mqtt5.publish(message, properties: MqttPublishProperties.init())
         }
     }
@@ -85,6 +92,7 @@ class MQTTDelegate: CocoaMQTT5Delegate {
     
     func mqtt5(_ mqtt5: CocoaMQTT5, didConnectAck ack: CocoaMQTTCONNACKReasonCode, connAckData: MqttDecodeConnAck?) {
         connected = true
+        viewController.updateMQTTStatus(status: "CONNECTED")
         print("MQTT connection successful")
     }
     
