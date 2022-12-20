@@ -16,7 +16,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var longitudeLabel: UILabel!
     @IBOutlet weak var networkSSIDLabel: UILabel!
     @IBOutlet weak var networkBSSIDLabel: UILabel!
-    @IBOutlet weak var networkSignalStrengthLabel: UILabel!
     
     // MARK: - State
 
@@ -73,11 +72,10 @@ class ViewController: UIViewController {
         }
     }
     
-    func updateNetworkLabels(ssid: String, bssid: String, signalStrength: String) {
+    func updateNetworkLabels(ssid: String, bssid: String) {
         DispatchQueue.main.async {
             self.networkSSIDLabel.text = "Network SSID: \(ssid)"
             self.networkBSSIDLabel.text = "Network BSSID: \(bssid)"
-            self.networkSignalStrengthLabel.text = "Network Signal Strength: \(signalStrength)"
         }
     }
     

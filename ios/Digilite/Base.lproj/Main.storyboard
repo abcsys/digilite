@@ -40,12 +40,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Signal Strength: LOADING..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rnO-5f-FIt">
-                                <rect key="frame" x="30" y="383" width="281" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Digiphone Name: WAITING..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqH-M8-zIk">
                                 <rect key="frame" x="29.999999999999986" y="77" width="218.66666666666663" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -66,7 +60,6 @@
                             <constraint firstItem="zZN-CH-AWE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="6kH-vZ-teW"/>
                             <constraint firstItem="zq5-4J-2fE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="8HZ-fX-fpS"/>
                             <constraint firstItem="zZN-CH-AWE" firstAttribute="top" secondItem="DT8-oa-0vk" secondAttribute="bottom" constant="30" id="HlX-dC-reG"/>
-                            <constraint firstItem="rnO-5f-FIt" firstAttribute="top" secondItem="n6Z-is-NlM" secondAttribute="bottom" constant="30" id="Ksf-A8-CdL"/>
                             <constraint firstItem="n6Z-is-NlM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="TpJ-Ka-cUi"/>
                             <constraint firstItem="DT8-oa-0vk" firstAttribute="top" secondItem="zq5-4J-2fE" secondAttribute="bottom" constant="30" id="cnz-6P-4oj"/>
                             <constraint firstItem="rxu-OK-Eeg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="eUk-WR-qzy"/>
@@ -74,7 +67,6 @@
                             <constraint firstItem="cqH-M8-zIk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="jUa-WL-JHU"/>
                             <constraint firstItem="n6Z-is-NlM" firstAttribute="top" secondItem="rxu-OK-Eeg" secondAttribute="bottom" constant="30" id="ql8-W3-6js"/>
                             <constraint firstItem="zq5-4J-2fE" firstAttribute="top" secondItem="cqH-M8-zIk" secondAttribute="bottom" constant="30" id="wdn-tG-mly"/>
-                            <constraint firstItem="rnO-5f-FIt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="xMd-w0-I0b"/>
                             <constraint firstItem="DT8-oa-0vk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="xR5-L0-Dpo"/>
                         </constraints>
                     </view>
@@ -85,7 +77,6 @@
                         <outlet property="mqttStatusLabel" destination="zq5-4J-2fE" id="RDt-04-n8m"/>
                         <outlet property="networkBSSIDLabel" destination="n6Z-is-NlM" id="tH6-Ru-p24"/>
                         <outlet property="networkSSIDLabel" destination="rxu-OK-Eeg" id="E8x-ww-9X0"/>
-                        <outlet property="networkSignalStrengthLabel" destination="rnO-5f-FIt" id="Cxd-Jt-fW7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
