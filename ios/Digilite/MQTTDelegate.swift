@@ -74,7 +74,7 @@ class MQTTDelegate: CocoaMQTT5Delegate {
                 print("Invalid JSON dictionary provided, skipping publish")
                 return
             }
-            let message = CocoaMQTT5Message.init(topic: digiphoneName, string: json)
+            let message = CocoaMQTT5Message.init(topic: digiphoneName, string: json, qos: .qos1) // qos1 is "at least once"
             mqtt5.publish(message, properties: MqttPublishProperties.init())
         }
     }
