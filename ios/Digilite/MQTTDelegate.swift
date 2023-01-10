@@ -13,7 +13,7 @@ class MQTTDelegate: CocoaMQTT5Delegate {
     
     private let EMQX_CLIENT_ID = "DIGI-NAME-STUB"
     private let EMQX_HOST = "4.tcp.ngrok.io"
-    private let EMQX_PORT: UInt16 = 14612
+    private let EMQX_PORT: UInt16 = 14793
     private let MQTT_USERNAME = "username"
     private let MQTT_PASSWORD = "password"
     private let MQTT_KEEPALIVE: UInt16 = 60
