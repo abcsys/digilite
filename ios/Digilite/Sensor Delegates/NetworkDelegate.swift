@@ -41,72 +41,100 @@ class NetworkDelegate {
         mqttDelegate.publishMessage(data: data)
         viewController.updateNetworkLabels(ssid: "None", bssid: "None")
         
+        // If the old network is not nil, then query for the old network's quality
+        if (currentSSID != nil && currentBSSID != nil) {
+            queryNetworkQuality(ssid: currentSSID!, bssid: currentBSSID!);
+        }
+        
         currentSSID = nil;
         currentBSSID = nil;
     }
 
     func updateConnectedNetwork(network: NEHotspotNetwork?) {
+        var newSSID: String?
+        var newBSSID: String?
+        
         if let network = network {
             // Using wifi
-            let ssid = network.ssid
-            let bssid = network.bssid
+            newSSID = network.ssid
+            newBSSID = network.bssid
             
             let data: [String: Any] = [
                 "network": [
-                    "ssid": ssid,
-                    "bssid": bssid
+                    "ssid": newSSID,
+                    "bssid": newBSSID
                 ]
             ]
             
             mqttDelegate.publishMessage(data: data)
-            viewController.updateNetworkLabels(ssid: ssid, bssid: bssid)
-            
-            // Inquire about network quality
-            if (ssid != currentSSID || bssid != currentBSSID) {
-                queryNetworkQuality();
-                currentSSID = ssid;
-                currentBSSID = bssid;
-            }
+            viewController.updateNetworkLabels(ssid: newSSID!, bssid: newBSSID!)
         } else {
             // Error finding network information
+            newSSID = nil;
+            newBSSID = nil;
+            
             let data: [String: Any] = [
                 "network": []
             ]
             
             mqttDelegate.publishMessage(data: data)
             viewController.updateNetworkLabels(ssid: "ERROR", bssid: "ERROR")
-            
-            currentSSID = nil;
-            currentBSSID = nil;
+        }
+        
+        // If we are on a new network, and the old network is not nil, then query for the old network's quality
+        if ((newSSID != currentSSID || newBSSID != currentBSSID) && currentSSID != nil && currentBSSID != nil) {
+            queryNetworkQuality(ssid: currentSSID!, bssid: currentBSSID!);
+        }
+        
+        // Update the current variables to keep track of the new network
+        currentSSID = newSSID;
+        currentBSSID = newBSSID;
+    }
+    
+    func queryNetworkQuality(ssid: String, bssid: String) {
+        let queryAlertController = UIAlertController(title: "Network Quality", message: "How was the network quality?", preferredStyle: .alert)
+
+        queryAlertController.addAction(UIAlertAction(title: "Good", style: .default, handler: { _ in
+            self.publishNetworkQuality(ssid: ssid, bssid: bssid, quality: 1)
+        }))
+        queryAlertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: { _ in
+            self.publishNetworkQuality(ssid: ssid, bssid: bssid, quality: 0)
+        }))
+        queryAlertController.addAction(UIAlertAction(title: "Bad", style: .default, handler: { _ in
+            self.publishNetworkQuality(ssid: ssid, bssid: bssid, quality: -1)
+        }))
+
+        DispatchQueue.main.async {
+            self.viewController.present(queryAlertController, animated: true, completion: nil)
         }
     }
     
-    func queryNetworkQuality() {
-        let queryAlertController = UIAlertController(title: "Network Quality", message: "How is the network quality?", preferredStyle: .alert)
-
-        queryAlertController.addAction(UIAlertAction(title: "Good", style: .default, handler: { _ in
-            self.publishNetworkQuality(quality: "good")
-        }))
-        queryAlertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: { _ in
-            self.publishNetworkQuality(quality: "okay")
-        }))
-        queryAlertController.addAction(UIAlertAction(title: "Bad", style: .default, handler: { _ in
-            self.publishNetworkQuality(quality: "bad")
-        }))
-
-        viewController.present(queryAlertController, animated: true, completion: nil)
-    }
-    
-    func publishNetworkQuality(quality: String) {
+    func publishNetworkQuality(ssid: String, bssid: String, quality: Int) {
         let data: [String: Any] = [
             "userReportedNetworkQuality": [
-                "ssid": currentSSID,
-                "bssid": currentBSSID,
-                "quality": quality
+                "ssid": ssid,
+                "bssid": bssid,
+                "quality": quality,
+                "deviceInfo": [
+                    "model": getDeviceModelName(),
+                    "os": UIDevice.current.systemVersion,
+                ]
             ]
         ]
         
         mqttDelegate.publishMessage(data: data)
+    }
+    
+    // Credit: https://stackoverflow.com/a/26962452
+    func getDeviceModelName() -> String {
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+        let identifier = machineMirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8, value != 0 else { return identifier }
+            return identifier + String(UnicodeScalar(UInt8(value)))
+        }
+        return identifier
     }
     
     // MARK: - Implementation Methods
