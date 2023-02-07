@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5148F1EB297736C6002AFD7D /* NetworkActiveMeasurementDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5148F1EA297736C6002AFD7D /* NetworkActiveMeasurementDelegate.swift */; };
 		51D5FD2528FF1BA600D3BDF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D5FD2428FF1BA600D3BDF8 /* AppDelegate.swift */; };
 		51D5FD2728FF1BA600D3BDF8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D5FD2628FF1BA600D3BDF8 /* SceneDelegate.swift */; };
 		51D5FD2928FF1BA600D3BDF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D5FD2828FF1BA600D3BDF8 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5148F1EA297736C6002AFD7D /* NetworkActiveMeasurementDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkActiveMeasurementDelegate.swift; sourceTree = "<group>"; };
 		51D5FD2128FF1BA600D3BDF8 /* Digilite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digilite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51D5FD2428FF1BA600D3BDF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51D5FD2628FF1BA600D3BDF8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				51F7D481293210A90094BDA2 /* LocationDelegate.swift */,
 				51F7D484293212620094BDA2 /* NetworkDelegate.swift */,
+				5148F1EA297736C6002AFD7D /* NetworkActiveMeasurementDelegate.swift */,
 			);
 			path = "Sensor Delegates";
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				51D5FD2528FF1BA600D3BDF8 /* AppDelegate.swift in Sources */,
 				51F7D485293212620094BDA2 /* NetworkDelegate.swift in Sources */,
 				51F7D4802931F5200094BDA2 /* MQTTDelegate.swift in Sources */,
+				5148F1EB297736C6002AFD7D /* NetworkActiveMeasurementDelegate.swift in Sources */,
 				51D5FD2728FF1BA600D3BDF8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

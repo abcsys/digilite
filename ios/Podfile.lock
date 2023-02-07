@@ -4,19 +4,23 @@ PODS:
   - CocoaMQTT/Core (2.0.7):
     - MqttCocoaAsyncSocket (~> 1.0.4)
   - MqttCocoaAsyncSocket (1.0.5)
+  - NDT7 (0.0.4)
 
 DEPENDENCIES:
   - CocoaMQTT
+  - NDT7 (= 0.0.4)
 
 SPEC REPOS:
   trunk:
     - CocoaMQTT
     - MqttCocoaAsyncSocket
+    - NDT7
 
 SPEC CHECKSUMS:
   CocoaMQTT: 110537a309edcf582f38e95d7596101e0cfdca26
   MqttCocoaAsyncSocket: 0b49051bae06716f1c3fd744f3aa7383d3b31513
+  NDT7: db6448ebf5648c2f1721bf3b473470ab201f4145
 
-PODFILE CHECKSUM: e021e5ec0ec4ca8b82aa1323809ab0d7a5be29f3
+PODFILE CHECKSUM: e69920569d7ca359341cca016b0ae3f33cc4a7db
 
 COCOAPODS: 1.11.3

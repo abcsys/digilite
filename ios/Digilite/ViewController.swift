@@ -16,6 +16,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var longitudeLabel: UILabel!
     @IBOutlet weak var networkSSIDLabel: UILabel!
     @IBOutlet weak var networkBSSIDLabel: UILabel!
+    @IBOutlet weak var downloadSpeedLabel: UILabel!
+    @IBOutlet weak var uploadSpeedLabel: UILabel!
+    @IBOutlet weak var pingLabel: UILabel!
     
     // MARK: - State
 
@@ -84,6 +87,18 @@ class ViewController: UIViewController {
             self.latitudeLabel.text = "Latitude: \(latitude)"
             self.longitudeLabel.text = "Longitude: \(longitude)"
         }
+    }
+    
+    func updateDownloadSpeedLabel(speed: Float) {
+        self.downloadSpeedLabel.text = "Download Speed: \(speed) Mbps"
+    }
+    
+    func updateUploadSpeedLabel(speed: Float) {
+        self.uploadSpeedLabel.text = "Upload Speed: \(speed) Mbps"
+    }
+    
+    func updatePingLabel(ping: Float) {
+        self.pingLabel.text = "Ping: \(ping) ms"
     }
 }
 

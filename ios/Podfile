@@ -2,4 +2,5 @@ use_frameworks!
 
 target 'Digilite' do
     pod 'CocoaMQTT'
+    pod 'NDT7', '0.0.4'
 end

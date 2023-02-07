@@ -52,31 +52,58 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download Speed: NO TEST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y72-VK-j4m">
+                                <rect key="frame" x="30" y="383" width="209" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Speed: NO TEST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNX-TB-i87">
+                                <rect key="frame" x="30" y="434" width="187" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ping: NO TEST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOS-lJ-qmm">
+                                <rect key="frame" x="30" y="485" width="113" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="y72-VK-j4m" firstAttribute="top" secondItem="n6Z-is-NlM" secondAttribute="bottom" constant="30" id="0My-gj-Wla"/>
                             <constraint firstItem="rxu-OK-Eeg" firstAttribute="top" secondItem="zZN-CH-AWE" secondAttribute="bottom" constant="30" id="3QK-NX-Sti"/>
                             <constraint firstItem="zZN-CH-AWE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="6kH-vZ-teW"/>
                             <constraint firstItem="zq5-4J-2fE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="8HZ-fX-fpS"/>
+                            <constraint firstItem="uNX-TB-i87" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="BDT-qZ-v0l"/>
                             <constraint firstItem="zZN-CH-AWE" firstAttribute="top" secondItem="DT8-oa-0vk" secondAttribute="bottom" constant="30" id="HlX-dC-reG"/>
                             <constraint firstItem="n6Z-is-NlM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="TpJ-Ka-cUi"/>
+                            <constraint firstItem="uNX-TB-i87" firstAttribute="top" secondItem="y72-VK-j4m" secondAttribute="bottom" constant="30" id="Yvd-GC-cfz"/>
+                            <constraint firstItem="AOS-lJ-qmm" firstAttribute="top" secondItem="uNX-TB-i87" secondAttribute="bottom" constant="30" id="Zz7-Sa-LDJ"/>
                             <constraint firstItem="DT8-oa-0vk" firstAttribute="top" secondItem="zq5-4J-2fE" secondAttribute="bottom" constant="30" id="cnz-6P-4oj"/>
                             <constraint firstItem="rxu-OK-Eeg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="eUk-WR-qzy"/>
                             <constraint firstItem="cqH-M8-zIk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="h7I-0a-eR5"/>
                             <constraint firstItem="cqH-M8-zIk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="jUa-WL-JHU"/>
+                            <constraint firstItem="AOS-lJ-qmm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="m4I-bv-YS1"/>
                             <constraint firstItem="n6Z-is-NlM" firstAttribute="top" secondItem="rxu-OK-Eeg" secondAttribute="bottom" constant="30" id="ql8-W3-6js"/>
+                            <constraint firstItem="y72-VK-j4m" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="r9k-Xf-njc"/>
                             <constraint firstItem="zq5-4J-2fE" firstAttribute="top" secondItem="cqH-M8-zIk" secondAttribute="bottom" constant="30" id="wdn-tG-mly"/>
                             <constraint firstItem="DT8-oa-0vk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="xR5-L0-Dpo"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="digiphoneNameLabel" destination="cqH-M8-zIk" id="fzV-46-M92"/>
+                        <outlet property="downloadSpeedLabel" destination="y72-VK-j4m" id="fXZ-Wi-mnE"/>
                         <outlet property="latitudeLabel" destination="DT8-oa-0vk" id="brc-Ks-Eiq"/>
                         <outlet property="longitudeLabel" destination="zZN-CH-AWE" id="KbL-sF-CRG"/>
                         <outlet property="mqttStatusLabel" destination="zq5-4J-2fE" id="RDt-04-n8m"/>
                         <outlet property="networkBSSIDLabel" destination="n6Z-is-NlM" id="tH6-Ru-p24"/>
                         <outlet property="networkSSIDLabel" destination="rxu-OK-Eeg" id="E8x-ww-9X0"/>
+                        <outlet property="pingLabel" destination="AOS-lJ-qmm" id="ycC-JJ-RWn"/>
+                        <outlet property="uploadSpeedLabel" destination="uNX-TB-i87" id="fBb-Y9-Qm1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

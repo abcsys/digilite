@@ -1,3 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-Digilite/Pods-Digilite-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/CocoaMQTT/CocoaMQTT.framework
 ${BUILT_PRODUCTS_DIR}/MqttCocoaAsyncSocket/MqttCocoaAsyncSocket.framework
+${BUILT_PRODUCTS_DIR}/NDT7/NDT7.framework
