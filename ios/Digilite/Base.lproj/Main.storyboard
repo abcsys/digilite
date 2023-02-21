@@ -52,7 +52,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SJ3-bh-Cyr">
                                 <rect key="frame" x="30" y="356" width="330" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Save"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Save and Launch"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="QZf-UX-q9q"/>
                                 </connections>

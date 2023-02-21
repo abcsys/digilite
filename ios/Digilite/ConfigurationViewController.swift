@@ -13,6 +13,20 @@ class ConfigurationViewController: UIViewController {
     @IBOutlet weak var portTextField: UITextField!
     @IBOutlet weak var digiphoneNameTextField: UITextField!
     
+    let defaults = UserDefaults.standard
+    
+    override func viewDidLoad() {
+        if let host = defaults.string(forKey: "host") {
+            hostnameTextField.text = host
+        }
+        if let port = defaults.string(forKey: "port") {
+            portTextField.text = port
+        }
+        if let digiphoneName = defaults.string(forKey: "digiphoneName") {
+            digiphoneNameTextField.text = digiphoneName
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let hostname = hostnameTextField.text ?? ""
         let port = portTextField.text ?? ""
@@ -25,6 +39,10 @@ class ConfigurationViewController: UIViewController {
             displayInputError(title: "Error", message: "Please enter a valid port")
             return
         }
+        
+        defaults.set(hostname, forKey: "host")
+        defaults.set(port, forKey: "port")
+        defaults.set(digiphoneName, forKey: "digiphoneName")
             
         let destinationVC = segue.destination as! DebugViewController
         destinationVC.emqxHost = hostname
