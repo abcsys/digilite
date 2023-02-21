@@ -11,13 +11,13 @@ import CoreLocation
 class LocationDelegate: NSObject, CLLocationManagerDelegate {
     // MARK: - State
     
-    private var viewController: ViewController
+    private var viewController: DebugViewController
     private var mqttDelegate: MQTTDelegate
     private var locationManager: CLLocationManager
     
     // MARK: - Class Methods
     
-    init(viewController: ViewController, mqttDelegate: MQTTDelegate) {
+    init(viewController: DebugViewController, mqttDelegate: MQTTDelegate) {
         self.viewController = viewController
         self.mqttDelegate = mqttDelegate
         locationManager = CLLocationManager()
@@ -70,6 +70,10 @@ class LocationDelegate: NSObject, CLLocationManagerDelegate {
             mqttDelegate.publishMessage(data: data)
             viewController.updateLocationLabels(latitude: "ERROR", longitude: "ERROR")
         }
+    }
+    
+    func cancel() {
+        locationManager.stopUpdatingLocation()
     }
     
     // MARK: - Implementation Methods

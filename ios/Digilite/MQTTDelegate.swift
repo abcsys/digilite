@@ -12,26 +12,26 @@ class MQTTDelegate: CocoaMQTT5Delegate {
     // MARK: - Constants
     
     private let EMQX_CLIENT_ID = "DIGI-NAME-STUB"
-    private let EMQX_HOST = "6.tcp.ngrok.io"
-    private let EMQX_PORT: UInt16 = 15418
     private let MQTT_USERNAME = "username"
     private let MQTT_PASSWORD = "password"
     private let MQTT_KEEPALIVE: UInt16 = 60
     
     // MARK: - State
     
-    private var viewController: ViewController
+    private var viewController: DebugViewController
     private var mqtt5: CocoaMQTT5
     private var connected: Bool
     private var digiphoneName: String
+    private var didReceiveShutdownSignal: Bool
     
     // MARK: - Class Methods
     
-    init(viewController: ViewController, digiphoneName: String) {
+    init(viewController: DebugViewController, digiphoneName: String, emqxHost: String, emqxPort: UInt16) {
         self.viewController = viewController
-        self.mqtt5 = CocoaMQTT5(clientID: EMQX_CLIENT_ID, host: EMQX_HOST, port: EMQX_PORT)
+        self.mqtt5 = CocoaMQTT5(clientID: EMQX_CLIENT_ID, host: emqxHost, port: emqxPort)
         self.connected = false
         self.digiphoneName = digiphoneName
+        self.didReceiveShutdownSignal = false
         
         // MQTT 5.0 connection properties
         let connectProperties = MqttConnectProperties()
@@ -88,6 +88,11 @@ class MQTTDelegate: CocoaMQTT5Delegate {
         }
     }
     
+    func shutdown() {
+        self.didReceiveShutdownSignal = true
+        mqtt5.disconnect()
+    }
+    
     // MARK: - Implementation Methods
     
     func mqtt5(_ mqtt5: CocoaMQTT5, didConnectAck ack: CocoaMQTTCONNACKReasonCode, connAckData: MqttDecodeConnAck?) {
@@ -141,6 +146,8 @@ class MQTTDelegate: CocoaMQTT5Delegate {
         print("MQTT disconnected")
         
         // Attempt reconnect
-        reconnect()
+        if (!didReceiveShutdownSignal) {
+            reconnect()
+        }
     }
 }

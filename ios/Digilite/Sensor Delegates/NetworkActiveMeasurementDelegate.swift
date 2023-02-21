@@ -11,7 +11,7 @@ import NDT7
 class NetworkActiveMeasurementDelegate: NDT7TestInteraction {
     // MARK: - State
     
-    private var viewController: ViewController
+    private var viewController: DebugViewController
     private var networkDelegate: NetworkDelegate
     private var ssid: String
     private var bssid: String
@@ -22,7 +22,7 @@ class NetworkActiveMeasurementDelegate: NDT7TestInteraction {
     
     // MARK: - Class Methods
     
-    init(viewController: ViewController, networkDelegate: NetworkDelegate, ssid: String, bssid: String) {
+    init(viewController: DebugViewController, networkDelegate: NetworkDelegate, ssid: String, bssid: String) {
         self.viewController = viewController
         self.networkDelegate = networkDelegate
         self.ssid = ssid
