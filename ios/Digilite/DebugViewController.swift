@@ -28,16 +28,20 @@ class DebugViewController: UIViewController {
     var digiphoneName: String?
     var emqxHost: String?
     var emqxPort: UInt16?
+    var initialized = false
     
     // MARK: - Class Methods
     
     override func viewDidAppear(_ animated: Bool) {
-        self.mqttDelegate = MQTTDelegate(viewController: self, digiphoneName: self.digiphoneName!, emqxHost: self.emqxHost!, emqxPort: self.emqxPort!)
-        self.locationDelegate = LocationDelegate(viewController: self, mqttDelegate: self.mqttDelegate!)
-        self.networkDelegate = NetworkDelegate(viewController: self, mqttDelegate: self.mqttDelegate!)
-        
-        DispatchQueue.main.async {
-            self.digiphoneNameLabel.text = "Digiphone Name: \(self.digiphoneName!)"
+        if (!initialized) {
+            self.mqttDelegate = MQTTDelegate(viewController: self, digiphoneName: self.digiphoneName!, emqxHost: self.emqxHost!, emqxPort: self.emqxPort!)
+            self.locationDelegate = LocationDelegate(viewController: self, mqttDelegate: self.mqttDelegate!)
+            self.networkDelegate = NetworkDelegate(viewController: self, mqttDelegate: self.mqttDelegate!)
+            
+            DispatchQueue.main.async {
+                self.digiphoneNameLabel.text = "Digiphone Name: \(self.digiphoneName!)"
+            }
+            initialized = true
         }
     }
     
