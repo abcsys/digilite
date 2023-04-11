@@ -29,14 +29,13 @@ class DebugViewController: UIViewController {
     var emqxHost: String?
     var emqxPort: UInt16?
     var initialized = false
+    var sensorDelegatesConnected = false
     
     // MARK: - Class Methods
     
     override func viewDidAppear(_ animated: Bool) {
         if (!initialized) {
             self.mqttDelegate = MQTTDelegate(viewController: self, digiphoneName: self.digiphoneName!, emqxHost: self.emqxHost!, emqxPort: self.emqxPort!)
-            self.locationDelegate = LocationDelegate(viewController: self, mqttDelegate: self.mqttDelegate!)
-            self.networkDelegate = NetworkDelegate(viewController: self, mqttDelegate: self.mqttDelegate!)
             
             DispatchQueue.main.async {
                 self.digiphoneNameLabel.text = "Digiphone Name: \(self.digiphoneName!)"
@@ -53,6 +52,14 @@ class DebugViewController: UIViewController {
     }
     
     // MARK: - Helper Methods
+    
+    func startSensorDelegates() {
+        if (!sensorDelegatesConnected) {
+            self.locationDelegate = LocationDelegate(viewController: self, mqttDelegate: self.mqttDelegate!)
+            self.networkDelegate = NetworkDelegate(viewController: self, mqttDelegate: self.mqttDelegate!)
+            sensorDelegatesConnected = true
+        }
+    }
     
     func updateMQTTStatus(status: String) {
         DispatchQueue.main.async {

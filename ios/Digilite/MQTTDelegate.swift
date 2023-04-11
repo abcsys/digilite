@@ -97,6 +97,7 @@ class MQTTDelegate: CocoaMQTT5Delegate {
     
     func mqtt5(_ mqtt5: CocoaMQTT5, didConnectAck ack: CocoaMQTTCONNACKReasonCode, connAckData: MqttDecodeConnAck?) {
         connected = true
+        viewController.startSensorDelegates()
         viewController.updateMQTTStatus(status: "CONNECTED")
         print("MQTT connection successful")
     }
