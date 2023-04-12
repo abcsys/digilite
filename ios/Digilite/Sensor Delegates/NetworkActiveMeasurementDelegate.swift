@@ -16,7 +16,8 @@ class NetworkActiveMeasurementDelegate: NDT7TestInteraction {
     private var ssid: String
     private var bssid: String
     private var ndt7Test: NDT7Test?
-    private var finalMeasurement: NDT7Measurement?
+    private var downloadMeasurement: NDT7Measurement?
+    private var uploadMeasurement: NDT7Measurement?
     private var currentlyRunningTest: NDT7TestConstants.Kind?
     var running: Bool
     
@@ -80,8 +81,10 @@ class NetworkActiveMeasurementDelegate: NDT7TestInteraction {
         if (kind == .upload && !running) {
             currentlyRunningTest = nil
             
-            guard let json = finalMeasurement?.rawData else { return }
-            networkDelegate.publishNetworkActiveMeasurementResults(ssid: ssid, bssid: bssid, results: json)
+            guard let downloadJson = downloadMeasurement?.rawData else { return }
+            guard let uploadJson = uploadMeasurement?.rawData else { return }
+
+            networkDelegate.publishNetworkActiveMeasurementResults(ssid: ssid, bssid: bssid, download:downloadJson, upload:uploadJson)
         }
     }
     
@@ -89,7 +92,11 @@ class NetworkActiveMeasurementDelegate: NDT7TestInteraction {
     func measurement(origin: NDT7TestConstants.Origin, kind: NDT7TestConstants.Kind, measurement: NDT7Measurement) {
         // We only care about the TCP info
         if (measurement.tcpInfo != nil) {
-            finalMeasurement = measurement
+            if (kind == .download) {
+                downloadMeasurement = measurement
+            } else if (kind == .upload) {
+                uploadMeasurement = measurement
+            }
             displaySpeedInfo(measurement: measurement)
         }
     }

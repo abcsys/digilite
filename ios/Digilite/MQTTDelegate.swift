@@ -11,7 +11,7 @@ import CocoaMQTT
 class MQTTDelegate: CocoaMQTT5Delegate {
     // MARK: - Constants
     
-    private let EMQX_CLIENT_ID = "DIGI-NAME-STUB"
+    private let EMQX_CLIENT_ID_PREFIX = "STUB_"
     private let MQTT_USERNAME = "username"
     private let MQTT_PASSWORD = "password"
     private let MQTT_KEEPALIVE: UInt16 = 60
@@ -28,7 +28,7 @@ class MQTTDelegate: CocoaMQTT5Delegate {
     
     init(viewController: DebugViewController, digiphoneName: String, emqxHost: String, emqxPort: UInt16) {
         self.viewController = viewController
-        self.mqtt5 = CocoaMQTT5(clientID: EMQX_CLIENT_ID, host: emqxHost, port: emqxPort)
+        self.mqtt5 = CocoaMQTT5(clientID: EMQX_CLIENT_ID_PREFIX + digiphoneName, host: emqxHost, port: emqxPort)
         self.connected = false
         self.digiphoneName = digiphoneName
         self.didReceiveShutdownSignal = false

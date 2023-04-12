@@ -143,9 +143,13 @@ class NetworkDelegate {
         mqttDelegate.publishMessage(data: data)
     }
     
-    func publishNetworkActiveMeasurementResults(ssid: String, bssid: String, results: String) {
-        guard let json = results.data(using: .utf8, allowLossyConversion: false) else { return }
-        let testResults: [String: Any] = try! JSONSerialization.jsonObject(with: json, options: .mutableContainers) as! [String: Any]
+    func publishNetworkActiveMeasurementResults(ssid: String, bssid: String, download: String, upload: String) {
+        guard let downloadJson = download.data(using: .utf8, allowLossyConversion: false) else { return }
+        guard let uploadJson = upload.data(using: .utf8, allowLossyConversion: false) else { return }
+
+        let downloadResults: [String: Any] = try! JSONSerialization.jsonObject(with: downloadJson, options: .mutableContainers) as! [String: Any]
+        let uploadResults: [String: Any] = try! JSONSerialization.jsonObject(with: uploadJson, options: .mutableContainers) as! [String: Any]
+        
         let data: [String: Any] = [
             "activeMeasurement": [
                 "ssid": ssid,
@@ -154,7 +158,8 @@ class NetworkDelegate {
                     "model": getDeviceModelName(),
                     "os": UIDevice.current.systemVersion,
                 ],
-                "data": testResults,
+                "download": downloadResults,
+                "upload": uploadResults
             ]
         ]
         
