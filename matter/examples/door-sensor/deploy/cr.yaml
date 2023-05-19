@@ -1,0 +1,12 @@
+apiVersion: example.digi.dev/v1
+kind: DoorSensor
+metadata:
+  name: {{ .Values.name }}
+spec:
+  meta:
+    report_interval: 1
+    matter_code: "11513554123"
+  # data router configs
+  egress:
+    energy:
+      flow: "watt | cut watt,event_ts"

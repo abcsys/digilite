@@ -1,0 +1,11 @@
+group: example.digi.dev
+version: v1
+kind: DoorSensor
+meta:
+  report_interval: number
+  matter_code: string
+egress:
+  data: object
+  energy: object
+obs:
+  closed: boolean

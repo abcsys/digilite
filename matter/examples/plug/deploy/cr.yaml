@@ -1,0 +1,16 @@
+apiVersion: example.digi.dev/v1
+kind: Plug
+metadata:
+  name: {{ .Values.name }}
+spec:
+  control:
+    # default settings
+    power:
+      intent: "on"
+  meta:
+    report_interval: 1
+    matter_code: "02553544203"
+  # data router configs
+  egress:
+    energy:
+      flow: "watt | cut watt,event_ts"

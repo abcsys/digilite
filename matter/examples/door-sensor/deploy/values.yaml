@@ -1,0 +1,9 @@
+group: example.digi.dev
+image: localhost:5000/doorsensor.v1.example.digi.dev:x86_64
+imagepull: Always
+kind: DoorSensor
+mounter: false
+name: doorsensor
+namespace: default
+plural: doorsensors
+version: v1

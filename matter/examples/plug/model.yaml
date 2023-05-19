@@ -1,0 +1,13 @@
+group: example.digi.dev
+version: v1
+kind: Plug
+control:
+  power: string
+meta:
+  report_interval: number
+  matter_code: string
+egress:
+  data: object
+  energy: object
+obs:
+  watt: number

@@ -1,0 +1,70 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: doorsensors.example.digi.dev
+spec:
+  group: example.digi.dev
+  names:
+    kind: DoorSensor
+    listKind: DoorSensorList
+    plural: doorsensors
+    singular: doorsensor
+  scope: Namespaced
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        properties:
+          apiVersion:
+            type: string
+          kind:
+            type: string
+          metadata:
+            type: object
+          spec:
+            properties:
+              egress:
+                properties:
+                  data:
+                    properties:
+                      desc:
+                        type: string
+                      driver_managed:
+                        type: boolean
+                      eoio:
+                        type: boolean
+                      flow:
+                        type: string
+                      pause:
+                        type: boolean
+                    type: object
+                  energy:
+                    properties:
+                      desc:
+                        type: string
+                      driver_managed:
+                        type: boolean
+                      eoio:
+                        type: boolean
+                      flow:
+                        type: string
+                      pause:
+                        type: boolean
+                    type: object
+                type: object
+              meta:
+                properties:
+                  matter_code:
+                    type: string
+                  report_interval:
+                    type: number
+                type: object
+              obs:
+                properties:
+                  closed:
+                    type: boolean
+                type: object
+            type: object
+        type: object
+    served: true
+    storage: true
