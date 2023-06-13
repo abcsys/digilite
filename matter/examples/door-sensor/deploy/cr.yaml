@@ -5,8 +5,7 @@ metadata:
 spec:
   meta:
     report_interval: 1
-    matter_code: "11513554123"
-  # data router configs
+    matter_code: "35592900699"
   egress:
-    energy:
-      flow: "watt | cut watt,event_ts"
+    data:
+      flow: ""

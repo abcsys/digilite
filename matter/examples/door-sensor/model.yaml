@@ -6,6 +6,5 @@ meta:
   matter_code: string
 egress:
   data: object
-  energy: object
 obs:
   closed: boolean
